@@ -36,6 +36,10 @@ class LoginLogout:
         template_name="users/pssword_reset_confirm.html"
     )
 
+    password_reset_complete = auth_views.PasswordResetCompleteView.as_view(
+        template_name="users/pssword_reset_complete.html"
+    )
+
 
 @login_required
 def Profile(request):
