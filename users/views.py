@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
@@ -13,7 +13,6 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get("username")
             messages.success(
                 request, "Your account has been created! You are now able to log in"
             )
@@ -27,6 +26,15 @@ def register(request):
 class LoginLogout:
     login_form = auth_views.LoginView.as_view(template_name="users/login.html")
     logout_form = auth_views.LogoutView.as_view(template_name="users/logout.html")
+    password_reset = auth_views.PasswordResetView.as_view(
+        template_name="users/pssword_reset.html"
+    )
+    password_reset_done = auth_views.PasswordResetDoneView.as_view(
+        template_name="users/pssword_reset_done.html"
+    )
+    password_reset_confirm = auth_views.PasswordResetConfirmView.as_view(
+        template_name="users/pssword_reset_confirm.html"
+    )
 
 
 @login_required
