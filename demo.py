@@ -52,4 +52,4 @@ def repeatedString(s, n):
     print(result)
 
 
-# repeatedString("aba", 10)
+repeatedString("aba", 10)
